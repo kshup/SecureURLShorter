@@ -1,4 +1,4 @@
-# URL Shortener SecureURLShorter
+# SecureURLShorter
 
 This project is the backend application for a URL shortening service built using Node.js, Express, and MongoDB. It allows users to convert long URLs into short, shareable links with a focus on security and functionality.
 
