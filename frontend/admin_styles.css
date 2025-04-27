@@ -1,0 +1,276 @@
+:root {
+  --primary-color: #4d94ff; /* Electric Blue */
+  --secondary-color: #b0b0ff; /* Light Lavender/Gray */
+  --background-color: #0a0c14; /* Very Dark Navy */
+  --sidebar-bg: #10141f; /* Slightly Lighter Navy for Sidebar */
+  --card-background: #10141f;
+  --text-color: #e0e0e5; /* Off-white/Light Gray */
+  --text-muted-color: #8a8a9e; /* Medium Gray/Lavender */
+  --input-background: #1a1e2d;
+  --input-border: #30344a;
+  --success-color: #05c46b; /* Bright Green */
+  --info-color: #4d94ff; /* Use primary for info */
+  --warning-color: #facc15; /* Yellow */
+  --error-color: #ff3f3f; /* Bright Red */
+  --table-header-bg: #1a1e2d;
+  --table-hover-bg: rgba(77, 148, 255, 0.08);
+  --navbar-height: 60px;
+  --font-main: 'Poppins', sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code&display=swap');
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+/* Navbar */
+.admin-navbar {
+  background-color: var(--sidebar-bg); 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  height: var(--navbar-height);
+  border-bottom: 1px solid var(--input-border);
+}
+
+.admin-navbar .navbar-brand {
+  font-weight: 600;
+  color: var(--primary-color) !important;
+}
+
+.admin-navbar .nav-link {
+  color: var(--text-muted-color) !important;
+  transition: color 0.3s ease;
+}
+
+.admin-navbar .nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; 
+  padding: var(--navbar-height) 0 0; 
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05);
+  background-color: var(--sidebar-bg);
+}
+
+.sidebar-sticky {
+  height: calc(100vh - var(--navbar-height));
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; 
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: var(--text-muted-color);
+  padding: 0.75rem 1.5rem;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  color: var(--primary-color);
+  background-color: rgba(77, 148, 255, 0.05);
+  border-left-color: var(--primary-color);
+}
+
+.sidebar .nav-link.active {
+  color: #fff;
+  background-color: rgba(77, 148, 255, 0.1);
+  border-left-color: var(--primary-color);
+  font-weight: 500;
+}
+
+.sidebar .nav-link .fa-fw {
+  width: 1.2em;
+  margin-right: 0.4em;
+}
+
+/* Main content */
+main {
+  padding-top: 1.5rem;
+}
+
+.section-title {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+  border-bottom: 1px solid var(--input-border);
+  padding-bottom: 0.6rem;
+}
+
+/* Stat Cards */
+.stat-card {
+  background-color: var(--card-background);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card h5 {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted-color);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.stat-card .display-6 {
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 2rem; 
+}
+
+/* Make specific stat cards use accent colors */
+.stat-card.bg-primary { background-color: #2563EB; color: #fff; border-color: #2563EB; }
+.stat-card.bg-success { background-color: #059669; color: #fff; border-color: #059669; }
+.stat-card.bg-info { background-color: #06B6D4; color: #fff; border-color: #06B6D4; }
+
+/* Admin Table */
+.admin-table {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.875rem;
+}
+
+.admin-table thead th {
+  background-color: var(--table-header-bg);
+  color: var(--text-muted-color);
+  border-bottom: 1px solid var(--input-border);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.admin-table td,
+.admin-table th {
+  border-color: var(--input-border);
+  vertical-align: middle;
+  padding: 0.65rem 1rem; 
+}
+
+.admin-table .btn-sm {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.admin-table code, .admin-table small {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  word-break: break-all;
+  color: var(--text-muted-color);
+}
+.admin-table td > small {
+  display: block;
+  max-width: 250px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-table a {
+  color: var(--primary-color);
+}
+.admin-table a:hover {
+  color: #66aaff; /* Lighter Blue */
+}
+
+/* Forms */
+.form-control {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-color);
+  border-radius: 5px;
+  padding: 0.7rem 1rem;
+}
+
+.form-control:focus {
+  background-color: var(--input-background);
+  border-color: var(--primary-color);
+  color: var(--text-color);
+  box-shadow: 0 0 0 3px rgba(77, 148, 255, 0.25);
+  outline: none;
+}
+
+.form-label {
+  color: var(--text-muted-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+.btn-danger {
+  background-color: var(--error-color);
+  border-color: var(--error-color);
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #ff5c5c; 
+}
+.btn-warning {
+   background-color: var(--warning-color);
+   border-color: var(--warning-color);
+   color: #111;
+}
+.btn-warning:hover {
+   background-color: #fbbf24; /* Lighter Yellow */
+}
+.btn-info {
+  background-color: var(--info-color);
+  border-color: var(--info-color);
+  color: #fff;
+}
+.btn-info:hover {
+   background-color: #66aaff; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: static;
+    height: auto;
+    padding-top: 0;
+    box-shadow: none;
+    margin-bottom: 1rem;
+    border-right: none;
+  }
+  main {
+    padding-top: 0;
+  }
+  .admin-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+  }
+} 

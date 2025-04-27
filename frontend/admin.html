@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URLShorter - Admin Paneli</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="admin_styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark admin-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fas fa-shield-alt me-2"></i>URLShorter Admin</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="adminNavbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/" target="_blank">Ana Siteye Dön</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="adminLogoutBtn">Çıkış</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#" data-section="dashboardOverview">
+                <i class="fas fa-tachometer-alt me-2"></i> Genel Bakış
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-section="urlManagement">
+                <i class="fas fa-link me-2"></i> URL Yönetimi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-section="userManagement">
+                <i class="fas fa-users me-2"></i> Kullanıcı Yönetimi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-section="clickLogs">
+                <i class="fas fa-mouse-pointer me-2"></i> Tıklama Kayıtları
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-section="ipBlacklist">
+                <i class="fas fa-ban me-2"></i> IP Engelleme
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main content -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        
+        <!-- Dashboard Overview Section -->
+        <div id="dashboardOverviewSection" class="admin-section">
+          <h2 class="section-title"><i class="fas fa-chart-line me-2"></i>Genel Bakış</h2>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="stat-card bg-primary text-white">
+                <h5>Toplam URL</h5>
+                <p class="display-6" id="totalUrlsStat">-</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card bg-success text-white">
+                <h5>Toplam Tıklama</h5>
+                <p class="display-6" id="totalClicksStat">-</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card bg-info text-white">
+                <h5>Toplam Kullanıcı</h5>
+                <p class="display-6" id="totalUsersStat">-</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- URL Management Section -->
+        <div id="urlManagementSection" class="admin-section d-none">
+          <h2 class="section-title"><i class="fas fa-link me-2"></i>URL Yönetimi</h2>
+          <div class="table-responsive">
+            <table class="table table-hover admin-table">
+              <thead>
+                <tr>
+                  <th>Kısa URL</th>
+                  <th>Orijinal URL</th>
+                  <th>Sahip Email</th>
+                  <th>Tıklanma</th>
+                  <th>Oluşturma</th>
+                  <th>Son Kullanma</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="allUrlsTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div id="userManagementSection" class="admin-section d-none">
+          <h2 class="section-title"><i class="fas fa-users me-2"></i>Kullanıcı Yönetimi</h2>
+           <div class="table-responsive">
+            <table class="table table-hover admin-table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Kayıt Tarihi</th>
+                  <th>URL Sayısı</th>
+                  <th>İşlemler</th>
+                </tr>
+              </thead>
+              <tbody id="allUsersTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Click Logs Section -->
+        <div id="clickLogsSection" class="admin-section d-none">
+           <h2 class="section-title"><i class="fas fa-mouse-pointer me-2"></i>Tıklama Kayıtları</h2>
+           <p class="text-muted"><small>Not: Bu bölüm sadece veritabanı bağlantısı aktif olduğunda veri gösterir.</small></p>
+           <div class="table-responsive">
+            <table class="table table-hover admin-table table-sm">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Kısa URL</th>
+                  <th>IP Adresi</th>
+                  <th>User Agent</th>
+                  <th>Referrer</th>
+                </tr>
+              </thead>
+              <tbody id="allClickLogsTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- IP Blacklist Section -->
+        <div id="ipBlacklistSection" class="admin-section d-none">
+          <h2 class="section-title"><i class="fas fa-ban me-2"></i>IP Engelleme Yönetimi</h2>
+          <p class="text-muted"><small>Not: Bu bölüm sadece veritabanı bağlantısı aktif olduğunda çalışır.</small></p>
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Engelli IP Listesi</h5>
+              <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-hover admin-table table-sm">
+                  <thead>
+                    <tr>
+                      <th>IP Adresi</th>
+                      <th>Sebep</th>
+                      <th>Tarih</th>
+                      <th>Kaldır</th>
+                    </tr>
+                  </thead>
+                  <tbody id="blacklistTableBody">
+                    <!-- Data populated by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5>Yeni IP Engelle</h5>
+              <form id="blacklistForm">
+                <div class="mb-3">
+                  <label for="blacklistIpInput" class="form-label">Engellenecek IP Adresi</label>
+                  <input type="text" class="form-control" id="blacklistIpInput" required>
+                </div>
+                <div class="mb-3">
+                  <label for="blacklistReasonInput" class="form-label">Sebep (isteğe bağlı)</label>
+                  <input type="text" class="form-control" id="blacklistReasonInput">
+                </div>
+                <button type="submit" class="btn btn-danger">Engelle</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="admin_app.js"></script>
+</body>
+</html> 

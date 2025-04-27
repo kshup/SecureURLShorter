@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener Status</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        h1 { color: #333; }
+        h2 { color: #555; }
+        ul { list-style: square; margin-left: 20px; }
+        li { margin-bottom: 5px; }
+        .security-list { background-color: #f4f4f4; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>URL Shortener Backend Status</h1>
+    <p>The API is running correctly.</p>
+
+    <div class="security-list">
+        <h2>Security Measures Implemented:</h2>
+        <ul>
+            <li><strong>Rate Limiting:</strong> Protects against brute-force attacks on login and URL shortening endpoints.</li>
+            <li><strong>Helmet:</strong> Sets various HTTP headers to secure the app (e.g., X-Frame-Options, X-Content-Type-Options).</li>
+            <li><strong>CORS (Cross-Origin Resource Sharing):</strong> Configured to control which domains can access the API (currently open, should be restricted in production).</li>
+            <li><strong>Mongo Sanitize:</strong> Prevents NoSQL query injection attacks by removing malicious characters ($ and .) from request inputs.</li>
+            <li><strong>Google Safe Browsing:</strong> Checks submitted URLs against Google's list of unsafe sites before shortening.</li>
+            <li><strong>Input Validation:</strong> Validates URL format and IP address format.</li>
+            <li><strong>Authentication (JWT):</strong> Securely manages user sessions using JSON Web Tokens.</li>
+            <li><strong>Password Hashing (bcrypt):</strong> Stores user passwords securely.</li>
+        </ul>
+    </div>
+
+</body>
+</html> 

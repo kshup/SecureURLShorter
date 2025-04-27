@@ -1,0 +1,459 @@
+:root {
+  --primary-color: #4d94ff; /* Electric Blue */
+  --secondary-color: #b0b0ff; /* Light Lavender/Gray (Subtle Accent) */
+  --background-color: #0a0c14; /* Very Dark Navy */
+  --card-background: #10141f; /* Slightly Lighter Navy */
+  --text-color: #e0e0e5; /* Off-white/Light Gray */
+  --text-muted-color: #8a8a9e; /* Medium Gray/Lavender */
+  --input-background: #1a1e2d;
+  --input-border: #30344a;
+  --success-color: #05c46b; /* Bright Green */
+  --error-color: #ff3f3f; /* Bright Red */
+  --glow-color: rgba(77, 148, 255, 0.3); /* Primary color glow */
+  --font-main: 'Poppins', sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code&display=swap');
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  font-size: 16px; /* Base font size */
+  /* Animated Background - Simple Matrix/Lines */
+  background:
+    linear-gradient(rgba(13, 13, 26, 0.97), rgba(13, 13, 26, 0.97)), /* Darker overlay */
+    repeating-linear-gradient(0deg, transparent, transparent 7px, rgba(0, 255, 135, 0.2) 8px, transparent 9px),
+    repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(10, 239, 255, 0.2) 11px, transparent 12px);
+  background-size: 100% 100%, 80px 80px, 80px 80px; /* Smaller pattern */
+  animation: matrixScroll 15s linear infinite; /* Slower animation */
+}
+
+@keyframes matrixScroll {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, -80px 80px, 80px -80px; }
+}
+
+.navbar {
+  background-color: var(--card-background);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid var(--input-border);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--text-color) !important; /* White brand */
+}
+
+.navbar-brand i {
+  color: var(--primary-color);
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-muted-color) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--primary-color) !important;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 60%;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(224, 224, 229, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.container {
+  flex: 1;
+  max-width: 1140px; /* Limit max width */
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 6px; /* Sharper corners */
+  border: 1px solid var(--input-border);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.btn {
+  border-radius: 5px;
+  padding: 0.65rem 1.3rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff; 
+  box-shadow: 0 2px 8px rgba(77, 148, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #66aaff; /* Lighter Blue */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(77, 148, 255, 0.3);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-muted-color);
+}
+.btn-secondary:hover {
+  background-color: var(--input-border);
+  color: var(--text-color);
+}
+
+.btn-outline-secondary {
+  color: var(--text-muted-color);
+  border: 1px solid var(--input-border);
+}
+.btn-outline-secondary:hover {
+  background-color: var(--input-border);
+  color: var(--text-color);
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #ff5c5c; /* Lighter Red */
+}
+
+.btn-info {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+.btn-info:hover {
+  background-color: #c0c0ff; /* Lighter Lavender */
+}
+
+.form-control {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-color);
+  border-radius: 5px;
+  padding: 0.7rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-main); /* Use main font for forms */
+}
+
+.form-control::placeholder {
+  color: var(--text-muted-color);
+  opacity: 0.6;
+}
+
+.form-control:focus {
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--glow-color);
+  outline: none;
+}
+
+.form-label {
+  color: var(--text-muted-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-text {
+  color: var(--text-muted-color) !important;
+  font-size: 0.875em;
+}
+
+footer {
+  background-color: var(--card-background);
+  color: var(--text-muted-color);
+  padding: 1.5rem 0;
+  margin-top: auto;
+  border-top: 1px solid var(--input-border);
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.display-4 {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--text-muted-color);
+  line-height: 1.6;
+}
+h2 {
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--input-border);
+  padding-bottom: 0.5rem;
+}
+
+/* Result Section */
+#resultSection .card {
+  border-color: var(--success-color);
+  background-color: rgba(5, 196, 107, 0.05); /* Subtle green background */
+}
+
+#resultSection .card-title {
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+#shortUrlResult {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  background-color: var(--input-background);
+  border-color: var(--input-border);
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #66aaff; /* Lighter Blue */
+  text-decoration: none;
+}
+
+/* Tables (for dashboard) */
+.table {
+  background-color: var(--card-background);
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  color: var(--text-color);
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.table thead th {
+  background-color: var(--input-background);
+  color: var(--text-muted-color);
+  border-bottom: 1px solid var(--input-border);
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  border-top: 1px solid var(--input-border);
+  font-size: 0.9rem;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(77, 148, 255, 0.05);
+}
+
+.table .btn-sm {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Modal Styling */
+.modal-content {
+  background-color: var(--card-background);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text-color);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--input-border);
+}
+
+.modal-title {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--input-border);
+}
+
+/* General Enhancements */
+::selection {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+#resultSection.show,
+#qrCodeContainer.show {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Remove distracting background animation */
+/*
+@keyframes matrixScroll {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, -80px 80px, 80px -80px; }
+}
+body { 
+  animation: matrixScroll 15s linear infinite;
+}
+*/
+
+/* Add Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Animation for the result card */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#resultSection.show {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* QR Code Animation */
+#qrCodeContainer.show {
+  animation: fadeIn 0.5s 0.2s ease forwards;
+}
+
+/* Dashboard table styling */
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.table thead th {
+  background-color: #f8f9fa;
+  border-bottom: none;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+  transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover td {
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+.btn-action {
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+}
+
+/* Loading spinner */
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Input focus animation */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+/* Input highlight */
+.form-control:focus + .form-label {
+  color: #4361ee;
+}
+
+/* Button hover effects */
+.btn {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+  transition: all 0.5s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* Dark mode switch */
+.dark-mode-switch {
+  cursor: pointer;
+} 
